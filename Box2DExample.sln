@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.26730.16
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Box2DExample", "Box2DExample\Box2DExample.vcxproj", "{533BE207-518D-4C7F-82C9-212A452A7292}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{533BE207-518D-4C7F-82C9-212A452A7292}.Debug|x64.ActiveCfg = Debug|x64
+		{533BE207-518D-4C7F-82C9-212A452A7292}.Debug|x64.Build.0 = Debug|x64
+		{533BE207-518D-4C7F-82C9-212A452A7292}.Debug|x86.ActiveCfg = Debug|Win32
+		{533BE207-518D-4C7F-82C9-212A452A7292}.Debug|x86.Build.0 = Debug|Win32
+		{533BE207-518D-4C7F-82C9-212A452A7292}.Release|x64.ActiveCfg = Release|x64
+		{533BE207-518D-4C7F-82C9-212A452A7292}.Release|x64.Build.0 = Release|x64
+		{533BE207-518D-4C7F-82C9-212A452A7292}.Release|x86.ActiveCfg = Release|Win32
+		{533BE207-518D-4C7F-82C9-212A452A7292}.Release|x86.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {EE31655A-E37E-4F9B-A0EE-38F78BACE74C}
+	EndGlobalSection
+EndGlobal
