@@ -1,1 +1,11 @@
 .vs/*
+Box2DExample/[Rr]elease/*
+Box2DExample/[Dd]ebug/*
+[Dd]ebug/*.pdb
+[Dd]ebug/*.ilk
+[Dd]ebug/*.exe
+[Rr]elease/*.pdb
+[Rr]elease/*.ilk
+[Rr]elease/*.iobj
+[Rr]elease/*.exe
+[Rr]elease/*ipdb
