@@ -8,7 +8,7 @@
  * @param width - the new width of the window
  * @param height - the new height of the window
  */
-void Resize(int ww, int hh)
+void Resize(int width, int height)
 {
 }
 
