@@ -26,6 +26,8 @@ private:
 	void HandleCollisions();
 
 	std::vector<GameObject*> mGameObjects;
+	GameObject* mRightWall;
+	GameObject* mPlatform;
 	GameObject* mSphere;
 };
 

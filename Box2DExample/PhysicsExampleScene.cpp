@@ -73,8 +73,11 @@ void PhysicsExampleScene::Update(float dt)
 
 	HandleCollisions();
 
+	mRightWall->PhysicsBody->SetAngularVelocity(1.0f);
+
 	GameObject* currentGo;
 	b2Vec2 physicsPosition;
+	float angle;
 	for (unsigned int goId = 0; goId < mGameObjects.size(); goId++)
 	{
 		currentGo = mGameObjects[goId];
@@ -83,6 +86,11 @@ void PhysicsExampleScene::Update(float dt)
 			physicsPosition = currentGo->PhysicsBody->GetPosition();
 			currentGo->position.x = physicsPosition.x;
 			currentGo->position.y = physicsPosition.y;
+
+			angle = currentGo->PhysicsBody->GetAngle();
+			// Convert the angle retrieved as the z euler angle.
+			// Use euler angles to rotate the object.
+			currentGo->orientation = glm::quat(glm::vec3(0.0f, 0.0f, angle));
 		}
 	}
 }
@@ -147,25 +155,47 @@ int PhysicsExampleScene::LoadShaders()
  */
 int PhysicsExampleScene::LoadScene()
 {
-	GameObject* platform = new GameObject();
-	platform->name = "Platform";
-	platform->position.y = -10.0f;
-	platform->scale.x *= 10.0f;
-	platform->scale.z *= 10.0f;
-	platform->MeshId = 1;
-	mGameObjects.push_back(platform);
+	mPlatform = new GameObject();
+	mPlatform->name = "Platform";
+	mPlatform->position.y = -10.0f;
+	mPlatform->scale.x *= 10.0f;
+	mPlatform->scale.z *= 10.0f;
+	mPlatform->MeshId = 1;
+	mGameObjects.push_back(mPlatform);
 
-	// TODO: Add rigid body to platform
 	b2BodyDef platformBodyDef;
-	platformBodyDef.position.Set(platform->position.x, platform->position.y);
-	platform->PhysicsBody = gPhysicsManager.CreateBody(&platformBodyDef);
-	platform->PhysicsBody->SetUserData(platform);				// This sets the platform game object
+	platformBodyDef.position.Set(mPlatform->position.x, mPlatform->position.y);
+	mPlatform->PhysicsBody = gPhysicsManager.CreateBody(&platformBodyDef);
+	mPlatform->PhysicsBody->SetUserData(mPlatform);				// This sets the platform game object
 																// as an accessible value so we can
 																// use it in the physics collision listener
 
 	b2PolygonShape platformShape;
-	platformShape.SetAsBox(platform->scale.x, platform->scale.y);
-	platform->PhysicsBody->CreateFixture(&platformShape, 0.0f);
+	platformShape.SetAsBox(mPlatform->scale.x, mPlatform->scale.y);
+	mPlatform->PhysicsBody->CreateFixture(&platformShape, 0.0f);
+
+
+	// Create a wall on the right side
+	mRightWall = new GameObject();
+	mRightWall->name = "RightWall";
+	mRightWall->position.y = 0.0f;
+	mRightWall->position.x = 10.0f;
+	mRightWall->scale.y *= 20.0f;
+	mRightWall->scale.z *= 10.0f;
+	mRightWall->MeshId = 1;
+	mGameObjects.push_back(mRightWall);
+
+	b2BodyDef rightWallBodyDef;
+	rightWallBodyDef.type = b2_kinematicBody;					// This allows the object to be given forces/impulses
+	rightWallBodyDef.position.Set(mRightWall->position.x, mRightWall->position.y);
+	mRightWall->PhysicsBody = gPhysicsManager.CreateBody(&rightWallBodyDef);
+	mRightWall->PhysicsBody->SetUserData(mRightWall);				
+
+	b2PolygonShape rightWallShape;
+	rightWallShape.SetAsBox(mRightWall->scale.x, mRightWall->scale.y);
+	mRightWall->PhysicsBody->CreateFixture(&rightWallShape, 0.0f);
+
+
 
 	mSphere = new GameObject();
 	mSphere->name = "Sphere";
@@ -173,7 +203,6 @@ int PhysicsExampleScene::LoadScene()
 	mSphere->MeshId = 0;
 	mGameObjects.push_back(mSphere);
 
-	// TODO: Add dynamic body to sphere
 	b2BodyDef sphereBodyDef;
 	sphereBodyDef.position.Set(mSphere->position.x, mSphere->position.y);
 	sphereBodyDef.type = b2_dynamicBody;						// This allows the object to move
