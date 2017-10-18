@@ -71,11 +71,20 @@ void PhysicsExampleScene::Update(float dt)
 {
 	HandleUserInput();
 
-	// Test to see if the physics is working.
-	b2Vec2 position = mGameObjects[1]->PhysicsBody->GetPosition();
-	printf("Sphere: %4.2f, %4.2f\n", position.x, position.y);
-
 	HandleCollisions();
+
+	GameObject* currentGo;
+	b2Vec2 physicsPosition;
+	for (unsigned int goId = 0; goId < mGameObjects.size(); goId++)
+	{
+		currentGo = mGameObjects[goId];
+		if (currentGo->PhysicsBody != 0)
+		{
+			physicsPosition = currentGo->PhysicsBody->GetPosition();
+			currentGo->position.x = physicsPosition.x;
+			currentGo->position.y = physicsPosition.y;
+		}
+	}
 }
 
 /**
