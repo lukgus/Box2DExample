@@ -63,6 +63,7 @@ void Render(void)
 bool init()
 {
 	gMeshManager.StartUp();
+	gPhysicsManager.StartUp();
 	gShaderManager.StartUp();
 	gRenderManager.StartUp();
 
@@ -79,6 +80,7 @@ void shutdown()
 
 	gRenderManager.ShutDown();
 	gShaderManager.ShutDown();
+	gPhysicsManager.Shutdown();
 	gMeshManager.Shutdown();
 }
 

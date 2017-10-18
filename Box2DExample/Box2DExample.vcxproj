@@ -143,6 +143,7 @@
     <ClCompile Include="Mesh.cpp" />
     <ClCompile Include="MeshManager.cpp" />
     <ClCompile Include="PhysicsExampleScene.cpp" />
+    <ClCompile Include="PhysicsManager.cpp" />
     <ClCompile Include="RenderManager.cpp" />
     <ClCompile Include="ShaderManager.cpp" />
   </ItemGroup>
@@ -156,6 +157,7 @@
     <ClInclude Include="Mesh.h" />
     <ClInclude Include="MeshManager.h" />
     <ClInclude Include="PhysicsExampleScene.h" />
+    <ClInclude Include="PhysicsManager.h" />
     <ClInclude Include="RenderManager.h" />
     <ClInclude Include="ShaderManager.h" />
     <ClInclude Include="vertex_defs.h" />
