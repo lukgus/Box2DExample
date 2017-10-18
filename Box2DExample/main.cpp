@@ -44,21 +44,25 @@ void Render(void)
 
 /**
  * init
+ * Startup managers in proper order
  */
 bool init()
 {
 	gMeshManager.StartUp();
+	gShaderManager.StartUp();
 
 	return mScene.Initialize();
 }
 
 /**
  * shutdown()
+ * Shutdown managers in reverse order.
  */
 void shutdown()
 {
 	mScene.Destroy();
 
+	gShaderManager.ShutDown();
 	gMeshManager.Shutdown();
 }
 
