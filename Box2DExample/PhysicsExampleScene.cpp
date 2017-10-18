@@ -71,6 +71,10 @@ void PhysicsExampleScene::Update(float dt)
 {
 	HandleUserInput();
 
+	// Test to see if the physics is working.
+	b2Vec2 position = mGameObjects[1]->PhysicsBody->GetPosition();
+	printf("Sphere: %4.2f, %4.2f\n", position.x, position.y);
+
 	HandleCollisions();
 }
 
@@ -140,13 +144,32 @@ int PhysicsExampleScene::LoadScene()
 	platform->scale.z *= 10.0f;
 	platform->MeshId = 1;
 	mGameObjects.push_back(platform);
+
 	// TODO: Add rigid body to platform
+	b2BodyDef platformBodyDef;
+	platformBodyDef.position.Set(platform->position.x, platform->position.y);
+	platform->PhysicsBody = gPhysicsManager.CreateBody(&platformBodyDef);
+
+	b2PolygonShape platformShape;
+	platformShape.SetAsBox(platform->scale.x, platform->scale.y);
+	platform->PhysicsBody->CreateFixture(&platformShape, 0.0f);
 
 	GameObject* sphere = new GameObject();
 	sphere->position.y = 10.0f;
 	sphere->MeshId = 0;
 	mGameObjects.push_back(sphere);
+
 	// TODO: Add dynamic body to sphere
+	b2BodyDef sphereBodyDef;
+	sphereBodyDef.position.Set(sphere->position.x, sphere->position.y);
+	sphereBodyDef.type = b2_dynamicBody;						// This allows the object to move
+	sphere->PhysicsBody = gPhysicsManager.CreateBody(&sphereBodyDef);
+
+	b2CircleShape circleShape;
+	circleShape.m_p.Set(0.0f, 0.0f);							// See how the midpoint at 0, 0 works.
+	circleShape.m_radius = sphere->scale.x;
+
+	sphere->PhysicsBody->CreateFixture(&circleShape, 1.0f);
 
 	return 0;
 }

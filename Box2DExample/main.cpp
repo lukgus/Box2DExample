@@ -40,6 +40,8 @@ void Render(void)
 
 	mScene.Update(dt);
 
+	gPhysicsManager.Update(dt);
+
 	gRenderManager.SetViewMatrix(
 		glm::lookAt(
 			glm::vec3(0.0f, 0.0f, 50.0f), 
