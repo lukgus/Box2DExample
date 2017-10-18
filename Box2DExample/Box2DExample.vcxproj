@@ -138,6 +138,7 @@
     <ClCompile Include="DebugLogger.cpp" />
     <ClCompile Include="ErrorLog.cpp" />
     <ClCompile Include="GameObject.cpp" />
+    <ClCompile Include="InputManager.cpp" />
     <ClCompile Include="LManagers.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Mesh.cpp" />
@@ -152,6 +153,7 @@
     <ClInclude Include="DebugLogger.h" />
     <ClInclude Include="ErrorLog.h" />
     <ClInclude Include="GameObject.h" />
+    <ClInclude Include="InputManager.h" />
     <ClInclude Include="LManagers.h" />
     <ClInclude Include="LOpenGL.h" />
     <ClInclude Include="Mesh.h" />
