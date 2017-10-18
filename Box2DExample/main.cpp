@@ -7,6 +7,7 @@
 PhysicsExampleScene mScene;
 
 const float DEFAULT_DT = 0.016f;
+float dt;
 
 /**
  * Resize
@@ -26,8 +27,9 @@ void Resize(int width, int height)
 void Render(void) 
 {
 	// TODO: Calculate delta time.
+	dt = DEFAULT_DT;
 
-	mScene.Update(DEFAULT_DT);
+	mScene.Update(dt);
 
 	// Clear Color and Depth Buffers
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
