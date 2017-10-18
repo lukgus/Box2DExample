@@ -9,7 +9,8 @@
 #include <assimp/scene.h>
 #include <assimp/postprocess.h>
 
-class cMesh;
+#include "Mesh.h"
+
 class MeshManager
 {
 public:
@@ -23,20 +24,22 @@ public:
 	const std::string& GetBaseFilePath();
 
 	int LoadMeshFromFile(const std::string& filename);
-	int GetMeshByName(const std::string& name, cMesh **mesh);
-	int GetMeshById(unsigned int id, cMesh **mesh);
+	int GetMeshDataById(unsigned int meshId, unsigned int& numTriangles, GLuint& vbo);
+	int GetMeshIdByName(const std::string &name, unsigned int &id);
 
 private:
+	void LoadMesh(aiMesh* mesh);
+
 	std::string mBaseFilePath;									// The path where the meshes are stored
-	std::map<std::string, unsigned int> mMeshMap;				// Map mesh name to mesh id
-	std::vector<cMesh*> mMeshes;								// vector of meshes by id
+	std::map<std::string, unsigned int> mNameToMeshId;			// Map mesh name to mesh id
+	std::vector<Mesh*> mMeshes;								// vector of meshes by id
 	
 	Assimp::Importer mImporter;
 };
 
 typedef std::map<std::string, unsigned int> mesh_map;
 typedef std::map<std::string, unsigned int>::iterator mesh_map_iterator;
-typedef std::vector<cMesh*> mesh_vec;
-typedef std::vector<cMesh*>::iterator mesh_vec_iterator;
+typedef std::vector<Mesh*> mesh_vec;
+typedef std::vector<Mesh*>::iterator mesh_vec_iterator;
 
 #endif
