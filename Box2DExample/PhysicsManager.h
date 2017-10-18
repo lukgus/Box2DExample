@@ -16,6 +16,9 @@ public:
 
 	void SetGravity(b2Vec2 gravity);
 
+	b2Body* CreateBody(const b2BodyDef* def);
+	void DestroyBody(b2Body* body);
+
 private:
 	b2Vec2 mGravity;
 	b2World* mPhysicsWorld;

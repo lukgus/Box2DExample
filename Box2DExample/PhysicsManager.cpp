@@ -61,3 +61,24 @@ void PhysicsManager::SetGravity(b2Vec2 gravity)
 {
 	mGravity = gravity;
 }
+
+/**
+ * CreateBody
+ * Creates a Box2D body from the provided def
+ * @param def - the Box2D body defs
+ * @return b2Body - the created body
+ */
+b2Body* PhysicsManager::CreateBody(const b2BodyDef* def)
+{
+	return mPhysicsWorld->CreateBody(def);
+}
+
+/**
+ * DestroyBody
+ * Destroys the provided body from teh world
+ * @param body - the body to destroy
+ */
+void PhysicsManager::DestroyBody(b2Body* body)
+{
+	mPhysicsWorld->DestroyBody(body);
+}
