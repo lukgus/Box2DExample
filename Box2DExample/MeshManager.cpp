@@ -11,6 +11,7 @@
  * Default Constructor
  */
 MeshManager::MeshManager()
+	: mBaseFilePath("Asssets/Models/")
 {
 	// do nothing.
 }
