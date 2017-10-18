@@ -1,5 +1,13 @@
 #include <GL/freeglut.h>
 
+#include <iostream>
+
+#include "PhysicsExampleScene.h"
+
+PhysicsExampleScene mScene;
+
+const float DEFAULT_DT = 0.016f;
+
 /**
  * Resize
  * Called from GLUT when the window is resized by
@@ -17,15 +25,30 @@ void Resize(int width, int height)
  */
 void Render(void) 
 {
+	// TODO: Calculate delta time.
+
+	mScene.Update(DEFAULT_DT);
+
 	// Clear Color and Depth Buffers
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 	// Call Render
+	// TODO: Call render.
 
 	glutSwapBuffers();
 }
 
+/**
+ * init
+ */
+bool init()
+{
+	return mScene.Initialize();
+}
 
+/**
+ * Main ¯\_(^v^)_/¯
+ */
 int main(int argc, char **argv)
 {
 	// init GLUT and create window
@@ -40,8 +63,18 @@ int main(int argc, char **argv)
 	glutReshapeFunc(Resize);
 	glutIdleFunc(Render);
 
-	// enter GLUT event processing cycle
+	// TODO - Register keyboard callbacks
+
+	if (!init())
+	{
+		printf("Failed to initialize the scene.\n");
+		return 1;
+	}
+
+	// TODO - Make glut loop return on exit.
 	glutMainLoop();
+
+	mScene.Destroy();
 
 	return 1;
 }
