@@ -9,6 +9,8 @@
 #include <GL/freeglut.h>
 #include "LOpenGL.h"
 
+#include "PhysicsContactListener.h"
+
 PhysicsExampleScene mScene;
 
 const float DEFAULT_DT = 0.016f;
@@ -96,6 +98,8 @@ bool init()
 	gShaderManager.StartUp();
 	gRenderManager.StartUp();
 	gInputManager.StartUp();
+
+	gPhysicsManager.SetContactListener(new PhysicsContactListener());
 
 	return mScene.Initialize();
 }

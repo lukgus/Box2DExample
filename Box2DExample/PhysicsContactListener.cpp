@@ -1,5 +1,7 @@
 #include "PhysicsContactListener.h"
 
+#include "DebugLogger.h"
+
 PhysicsContactListener::PhysicsContactListener()
 {
 }
@@ -16,7 +18,7 @@ PhysicsContactListener::~PhysicsContactListener()
  */
 void PhysicsContactListener::BeginContact(b2Contact* contact)
 {
-
+	DebugLogger::LogNotification("PhysicsContactListener", "Start Physics Contact!");
 }
 
 /**
@@ -27,5 +29,5 @@ void PhysicsContactListener::BeginContact(b2Contact* contact)
  */
 void PhysicsContactListener::EndContact(b2Contact* contact)
 {
-
+	DebugLogger::LogNotification("PhysicsContactListener", "End Physics Contact!");
 }

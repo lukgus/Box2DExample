@@ -63,6 +63,18 @@ void PhysicsManager::SetGravity(b2Vec2 gravity)
 }
 
 /**
+ * SetContactListener
+ * Sets the contact listener for the physics
+ * world. Calls methods in this listener for
+ * collisions in the world.
+ * @param contactListener - the contact listener
+ */
+void PhysicsManager::SetContactListener(b2ContactListener* contactListener)
+{
+	mPhysicsWorld->SetContactListener(contactListener);
+}
+
+/**
  * CreateBody
  * Creates a Box2D body from the provided def
  * @param def - the Box2D body defs

@@ -15,6 +15,7 @@ public:
 	void Update(float dt);
 
 	void SetGravity(b2Vec2 gravity);
+	void SetContactListener(b2ContactListener* contactListener);
 
 	b2Body* CreateBody(const b2BodyDef* def);
 	void DestroyBody(b2Body* body);
