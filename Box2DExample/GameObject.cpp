@@ -7,6 +7,7 @@ GameObject::GameObject(void)
 	, colour(glm::vec3(1.0f, 1.0f, 1.0f))
 	, bIsActive(true)
 	, MeshId(0)
+	, PhysicsBody(0)
 {
 }
 

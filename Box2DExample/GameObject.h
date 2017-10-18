@@ -6,6 +6,8 @@
 #include <glm/glm.hpp>
 #include <glm/gtc/quaternion.hpp>
 
+#include <Box2D\Box2D.h>
+
 #include "LOpenGL.h"
 
 class GameObject
@@ -26,6 +28,8 @@ public:
 	std::string tag;
 
 	unsigned int MeshId;
+
+	b2Body* PhysicsBody;
 
 private:
 	bool bIsActive;
