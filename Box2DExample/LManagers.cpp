@@ -1,4 +1,5 @@
 #include "LManagers.h"
 
-MeshManager gMeshManager;
-ShaderManager gShaderManager;
+MeshManager			gMeshManager;
+RenderManager		gRenderManager;
+ShaderManager		gShaderManager;

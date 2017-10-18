@@ -1,16 +1,20 @@
 #include <iostream>
 
+#include <glm/gtc/matrix_transform.hpp>
+
 #include "PhysicsExampleScene.h"
 
 #include "LManagers.h"
 
 #include <GL/freeglut.h>
+#include "LOpenGL.h"
 
 PhysicsExampleScene mScene;
 
 const float DEFAULT_DT = 0.016f;
+const float Z_NEAR = 1.0f;
+const float Z_FAR = 1000.0f;
 float dt;
-
 /**
  * Resize
  * Called from GLUT when the window is resized by
@@ -21,6 +25,9 @@ float dt;
  */
 void Resize(int width, int height)
 {
+	float ratio = float(width) / float(height);
+	gRenderManager.SetProjectionMatrix(glm::perspective(glm::radians(45.0f), ratio, Z_NEAR, Z_FAR));
+	glViewport(0, 0, width, height);
 }
 
 /**
@@ -33,11 +40,18 @@ void Render(void)
 
 	mScene.Update(dt);
 
+	gRenderManager.SetViewMatrix(
+		glm::lookAt(
+			glm::vec3(0.0f, 0.0f, 50.0f), 
+			glm::vec3(0.0f, 0.0f, 0.0f), 
+			glm::vec3(0.0f, 1.0f, 0.0f)
+		)
+	);
+
 	// Clear Color and Depth Buffers
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-	// Call Render
-	// TODO: Call render.
+	mScene.Render();
 
 	glutSwapBuffers();
 }
@@ -50,6 +64,7 @@ bool init()
 {
 	gMeshManager.StartUp();
 	gShaderManager.StartUp();
+	gRenderManager.StartUp();
 
 	return mScene.Initialize();
 }
@@ -62,6 +77,7 @@ void shutdown()
 {
 	mScene.Destroy();
 
+	gRenderManager.ShutDown();
 	gShaderManager.ShutDown();
 	gMeshManager.Shutdown();
 }

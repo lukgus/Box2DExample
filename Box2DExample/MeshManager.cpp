@@ -212,7 +212,7 @@ int MeshManager::GetMeshDataById(unsigned int meshId, unsigned int& numTriangles
 
 	numTriangles = mMeshes[meshId]->NumTriangles;
 
-	vbo = mMeshes[meshId]->VBO;
+	vbo = mMeshes[meshId]->VAO;
 
 	return 0;
 }

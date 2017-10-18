@@ -9,6 +9,7 @@
  */
 PhysicsExampleScene::PhysicsExampleScene()
 {
+	int breakpoint = 0;
 }
 
 /**
@@ -16,7 +17,7 @@ PhysicsExampleScene::PhysicsExampleScene()
  */
 PhysicsExampleScene::~PhysicsExampleScene()
 {
-
+	int breakpoint = 0;
 }
 
 /**
@@ -36,14 +37,20 @@ bool PhysicsExampleScene::Initialize()
 	}
 
 	DebugLogger::LogMessage("Loading Shaders...");
-	if (LoadMeshes() != 0)
+	if (LoadShaders() != 0)
 	{
 		DebugLogger::LogError("Failed to load shaders!");
 		return false;
 	}
 
 	DebugLogger::LogMessage("Creating Scene...");
+	if (LoadScene() != 0)
+	{
+		DebugLogger::LogError("Failed to load scene!");
+		return false;
+	}
 
+	DebugLogger::LogMessage("Initialization successful!");
 	return true;
 }
 
@@ -65,6 +72,18 @@ void PhysicsExampleScene::Destroy()
 void PhysicsExampleScene::Update(float dt)
 {
 
+}
+
+/**
+ * Render
+ * Renders the scene
+ */
+void PhysicsExampleScene::Render()
+{
+	// Call Render
+	gRenderManager.RenderGameObjects(mGameObjects);
+
+	int breakpoint = 0;
 }
 
 /**
@@ -104,6 +123,25 @@ int PhysicsExampleScene::LoadShaders()
 		DebugLogger::LogError("Failed to load SimpleShader!");
 		return 1;
 	}
+
+	return 0;
+}
+
+/**
+ * LoadScene
+ * Creates all game objects for the scene
+ * @return int - 0 if success, anything else if fail
+ */
+int PhysicsExampleScene::LoadScene()
+{
+	// TODO: Create objects
+	GameObject* platform = new GameObject();
+	platform->MeshId = 1;
+	mGameObjects.push_back(platform);
+
+	GameObject* sphere = new GameObject();
+	sphere->MeshId = 0;
+	mGameObjects.push_back(sphere);
 
 	return 0;
 }

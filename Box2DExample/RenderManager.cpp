@@ -84,9 +84,6 @@ void RenderManager::GetUniformLocations(void)
 	this->mEyeUL = glGetUniformLocation(id, "eye");
 	CheckGLError();
 
-
-	TempSetUp();
-
 	gShaderManager.UseProgram("SimpleShader");
 }
 
@@ -123,7 +120,6 @@ void RenderManager::RenderScene(void)
 void RenderManager::RenderGameObjects(const std::vector<GameObject*> &gameObjects)
 {
 	gShaderManager.UseProgram("SimpleShader");
-	TempSetUp();
 
 	glUniformMatrix4fv(this->mViewMatrixUL, 1, GL_FALSE, glm::value_ptr(mViewMatrix));
 	glUniformMatrix4fv(this->mProjectionMatrixUL, 1, GL_FALSE, glm::value_ptr(mProjectionMatrix));
@@ -159,30 +155,21 @@ void RenderManager::RenderGameObject(GameObject* pGameObject, const glm::mat4 &p
 	// Check if there is a mesh to render
 	if (pGameObject->MeshId != -1)
 	{
-		GLuint vbo;
+		GLuint vao;
 		unsigned int numTriangles;
 
-		gMeshManager.GetMeshDataById(pGameObject->MeshId, numTriangles, vbo);
+		gMeshManager.GetMeshDataById(pGameObject->MeshId, numTriangles, vao);
 
-		glUniform3f(this->mColourUL, pGameObject->colour.x, pGameObject->colour.y, pGameObject->colour.z);
+		// glUniform3f(this->mColourUL, pGameObject->colour.x, pGameObject->colour.y, pGameObject->colour.z);
 
 		CheckGLError();
 		glUniformMatrix4fv(this->mModelMatrixUL, 1, GL_FALSE, glm::value_ptr(ModelMatrix));
 		CheckGLError();
 
-		glBindVertexArray(vbo);
+		glBindVertexArray(vao);
 		CheckGLError();
 
 		glDrawElements(GL_TRIANGLES, numTriangles * 3, GL_UNSIGNED_INT, (GLvoid*)0);
 		CheckGLError();
 	}
-}
-
-void RenderManager::TempSetUp(void)
-{
-	// Set up a light
-	glUniform3f(this->mColourUL, 1.0f, 1.0f, 1.0f);
-	CheckGLError();
-
-	return;
 }
