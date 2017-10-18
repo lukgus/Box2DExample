@@ -9,7 +9,6 @@
  */
 PhysicsExampleScene::PhysicsExampleScene()
 {
-	int breakpoint = 0;
 }
 
 /**
@@ -17,7 +16,6 @@ PhysicsExampleScene::PhysicsExampleScene()
  */
 PhysicsExampleScene::~PhysicsExampleScene()
 {
-	int breakpoint = 0;
 }
 
 /**
@@ -134,7 +132,6 @@ int PhysicsExampleScene::LoadShaders()
  */
 int PhysicsExampleScene::LoadScene()
 {
-	// TODO: Create objects
 	GameObject* platform = new GameObject();
 	platform->position.y = -10.0f;
 	platform->scale.x *= 10.0f;
