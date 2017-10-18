@@ -84,7 +84,7 @@ int PhysicsExampleScene::LoadMeshes()
 	DebugLogger::LogSubMessage("loading PlatformMesh...");
 	if (gMeshManager.LoadMeshFromFile("Platform.fbx") != 0)
 	{
-		DebugLogger::LogError("Failed to load SphereMesh...");
+		DebugLogger::LogError("Failed to load PlatformMesh...");
 		return 1;
 	}
 
