@@ -2,6 +2,8 @@
 
 #include <assert.h>
 
+#include <iostream>
+
 /**
  * Default Constructor
  */
@@ -63,7 +65,28 @@ const std::string& MeshManager::GetBaseFilePath()
  */
 int MeshManager::LoadMeshFromFile(const std::string& filename)
 {
-	// TODO: Load mesh from Assimp
+	unsigned int Flags = aiProcess_Triangulate;
+	const aiScene* scene = this->mImporter.ReadFile(filename.c_str(), Flags);
+	if (!scene)
+	{
+		printf("Failed to load mesh file.\n");
+		return 1;
+	}
+
+	if (!scene->HasMeshes())
+	{
+		printf("Mesh does not contain any meshes.\n");
+		return 1;
+	}
+
+	aiMesh* mesh = scene->mMeshes[0];
+
+	unsigned int numVertices = mesh->mNumVertices;
+	unsigned int numIndices = mesh->mNumFaces * 3;
+
+	
+
+	return 0;
 }
 
 /**
