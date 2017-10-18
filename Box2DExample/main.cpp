@@ -40,6 +40,8 @@ void Render(void)
 
 	mScene.Update(dt);
 
+	gInputManager.Update();
+
 	gRenderManager.SetViewMatrix(
 		glm::lookAt(
 			glm::vec3(0.0f, 0.0f, 50.0f), 
@@ -65,7 +67,8 @@ void Render(void)
  */
 void PressKey(unsigned char key, int mouseX, int mouseY)
 {
-	// TODO: Call input manager with key info
+	gInputManager.PressKey(key);
+	gInputManager.SetMousePosition(mouseX, mouseY);
 }
 
 /**
@@ -77,7 +80,8 @@ void PressKey(unsigned char key, int mouseX, int mouseY)
 */
 void ReleaseKey(unsigned char key, int mouseX, int mouseY)
 {
-	// TOOD: Call input manager with key info
+	gInputManager.ReleaseKey(key);
+	gInputManager.SetMousePosition(mouseX, mouseY);
 }
 
 /**
@@ -90,6 +94,7 @@ bool init()
 	gPhysicsManager.StartUp();
 	gShaderManager.StartUp();
 	gRenderManager.StartUp();
+	gInputManager.StartUp();
 
 	return mScene.Initialize();
 }
@@ -102,6 +107,7 @@ void shutdown()
 {
 	mScene.Destroy();
 
+	gInputManager.Shutdown();
 	gRenderManager.ShutDown();
 	gShaderManager.ShutDown();
 	gPhysicsManager.Shutdown();
