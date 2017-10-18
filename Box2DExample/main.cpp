@@ -57,6 +57,30 @@ void Render(void)
 }
 
 /**
+ * PressKey
+ * GLUT callback for keyboard press
+ * @param key - the key pressed
+ * @param mouseX - the current x mouse coord
+ * @param mouseY - the current y mouse coord
+ */
+void PressKey(unsigned char key, int mouseX, int mouseY)
+{
+	// TODO: Call input manager with key info
+}
+
+/**
+* ReleaseKey
+* GLUT callback for keyboard release
+* @param key - the key pressed
+* @param mouseX - the current x mouse coord
+* @param mouseY - the current y mouse coord
+*/
+void ReleaseKey(unsigned char key, int mouseX, int mouseY)
+{
+	// TOOD: Call input manager with key info
+}
+
+/**
  * init
  * Startup managers in proper order
  */
@@ -106,7 +130,9 @@ int main(int argc, char **argv)
 	glutReshapeFunc(Resize);
 	glutIdleFunc(Render);
 
-	// TODO - Register keyboard callbacks
+	glutIgnoreKeyRepeat(1);										// Ignore keyboard repeat nonsense
+	glutKeyboardFunc(PressKey);
+	glutKeyboardUpFunc(ReleaseKey);
 
 	if (!init())
 	{
