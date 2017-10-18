@@ -64,14 +64,14 @@ void PhysicsExampleScene::Destroy()
 }
 
 /**
- * UPdate
+ * Update
  * Calls update on everything that needs to be updated
  * at the scene level.
  * @param dt - the delta time in ms
  */
 void PhysicsExampleScene::Update(float dt)
 {
-
+	// TODO: Detect user input, and handle it
 }
 
 /**
@@ -136,10 +136,14 @@ int PhysicsExampleScene::LoadScene()
 {
 	// TODO: Create objects
 	GameObject* platform = new GameObject();
+	platform->position.y = -10.0f;
+	platform->scale.x *= 10.0f;
+	platform->scale.z *= 10.0f;
 	platform->MeshId = 1;
 	mGameObjects.push_back(platform);
 
 	GameObject* sphere = new GameObject();
+	sphere->position.y = 10.0f;
 	sphere->MeshId = 0;
 	mGameObjects.push_back(sphere);
 
