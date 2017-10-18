@@ -137,22 +137,26 @@
     <ClCompile Include="CheckGLError.cpp" />
     <ClCompile Include="DebugLogger.cpp" />
     <ClCompile Include="ErrorLog.cpp" />
+    <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="LManagers.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Mesh.cpp" />
     <ClCompile Include="MeshManager.cpp" />
     <ClCompile Include="PhysicsExampleScene.cpp" />
+    <ClCompile Include="RenderManager.cpp" />
     <ClCompile Include="ShaderManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CheckGLError.h" />
     <ClInclude Include="DebugLogger.h" />
     <ClInclude Include="ErrorLog.h" />
+    <ClInclude Include="GameObject.h" />
     <ClInclude Include="LManagers.h" />
     <ClInclude Include="LOpenGL.h" />
     <ClInclude Include="Mesh.h" />
     <ClInclude Include="MeshManager.h" />
     <ClInclude Include="PhysicsExampleScene.h" />
+    <ClInclude Include="RenderManager.h" />
     <ClInclude Include="ShaderManager.h" />
     <ClInclude Include="vertex_defs.h" />
   </ItemGroup>

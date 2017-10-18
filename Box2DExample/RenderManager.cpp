@@ -176,12 +176,6 @@ void RenderManager::RenderGameObject(GameObject* pGameObject, const glm::mat4 &p
 		glDrawElements(GL_TRIANGLES, numTriangles * 3, GL_UNSIGNED_INT, (GLvoid*)0);
 		CheckGLError();
 	}
-
-	// Render all child objects
-	for (std::vector<GameObject*>::iterator it = pGameObject->mChildObjects.begin(); it != pGameObject->mChildObjects.end(); it++)
-	{
-		RenderGameObject(*it, ModelMatrix, RotationMatrix);
-	}
 }
 
 void RenderManager::TempSetUp(void)

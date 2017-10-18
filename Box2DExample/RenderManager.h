@@ -19,7 +19,7 @@
 
 #include "CheckGLError.h"
 
-class GameObject;
+#include "GameObject.h"
 
 class RenderManager
 {
