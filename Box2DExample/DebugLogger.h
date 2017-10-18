@@ -8,6 +8,7 @@ class DebugLogger
 public:
 	static void LogMessage(const std::string &message);
 	static void LogNotification(const std::string &main, const std::string &sub);
+	static void LogNotification(const std::string &main, const std::string &sub, const std::string &subsub);
 	static void LogSubMessage(const std::string &message);
 	static void LogWarning(const std::string &message);
 

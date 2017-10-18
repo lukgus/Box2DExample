@@ -28,6 +28,14 @@ void DebugLogger::LogNotification(const std::string &source, const std::string &
 	cout << notification << endl;
 }
 
+void DebugLogger::LogNotification(const std::string &source, const std::string &sub, const std::string &subsub)
+{
+	SetConsoleTextAttribute(hConsole, LOG_MESSAGE_COLOUR);
+	cout << "[" << source << "] ";
+	SetConsoleTextAttribute(hConsole, LOG_SUBMESSAGE_COLOUR);
+	cout << sub << subsub << endl;
+}
+
 void DebugLogger::LogSubMessage(const std::string &subMessage)
 {
 	SetConsoleTextAttribute(hConsole, LOG_SUBMESSAGE_COLOUR);

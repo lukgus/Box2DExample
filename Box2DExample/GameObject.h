@@ -2,6 +2,7 @@
 #define GAMEOBJECT_HG
 
 #include <vector>
+#include <string>
 
 #include <glm/glm.hpp>
 #include <glm/gtc/quaternion.hpp>
@@ -18,6 +19,11 @@ public:
 
 	bool IsActive(void);
 	void SetActive(bool show);
+
+	void BeginContact(GameObject* other);
+	void EndContact(GameObject* other);
+
+	std::string name;
 
 	glm::vec3 position;
 	glm::vec3 scale;

@@ -148,6 +148,7 @@ int PhysicsExampleScene::LoadShaders()
 int PhysicsExampleScene::LoadScene()
 {
 	GameObject* platform = new GameObject();
+	platform->name = "Platform";
 	platform->position.y = -10.0f;
 	platform->scale.x *= 10.0f;
 	platform->scale.z *= 10.0f;
@@ -158,12 +159,16 @@ int PhysicsExampleScene::LoadScene()
 	b2BodyDef platformBodyDef;
 	platformBodyDef.position.Set(platform->position.x, platform->position.y);
 	platform->PhysicsBody = gPhysicsManager.CreateBody(&platformBodyDef);
+	platform->PhysicsBody->SetUserData(platform);				// This sets the platform game object
+																// as an accessible value so we can
+																// use it in the physics collision listener
 
 	b2PolygonShape platformShape;
 	platformShape.SetAsBox(platform->scale.x, platform->scale.y);
 	platform->PhysicsBody->CreateFixture(&platformShape, 0.0f);
 
 	mSphere = new GameObject();
+	mSphere->name = "Sphere";
 	mSphere->position.y = 10.0f;
 	mSphere->MeshId = 0;
 	mGameObjects.push_back(mSphere);
@@ -173,6 +178,7 @@ int PhysicsExampleScene::LoadScene()
 	sphereBodyDef.position.Set(mSphere->position.x, mSphere->position.y);
 	sphereBodyDef.type = b2_dynamicBody;						// This allows the object to move
 	mSphere->PhysicsBody = gPhysicsManager.CreateBody(&sphereBodyDef);
+	mSphere->PhysicsBody->SetUserData(mSphere);
 
 	b2CircleShape circleShape;
 	circleShape.m_p.Set(0.0f, 0.0f);							// See how the midpoint at 0, 0 works.
