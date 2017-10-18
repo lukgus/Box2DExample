@@ -1,8 +1,10 @@
-#include <GL/freeglut.h>
-
 #include <iostream>
 
 #include "PhysicsExampleScene.h"
+
+#include "LManagers.h"
+
+#include <GL/freeglut.h>
 
 PhysicsExampleScene mScene;
 
@@ -45,7 +47,19 @@ void Render(void)
  */
 bool init()
 {
+	gMeshManager.StartUp();
+
 	return mScene.Initialize();
+}
+
+/**
+ * shutdown()
+ */
+void shutdown()
+{
+	mScene.Destroy();
+
+	gMeshManager.Shutdown();
 }
 
 /**
@@ -60,6 +74,11 @@ int main(int argc, char **argv)
 	glutInitWindowSize(1200, 800);
 	glutCreateWindow("Box2D Setup Example");
 
+	GLenum result = glewInit();
+	if (result != GLEW_OK)
+	{
+		return 1;
+	}
 	// register callbacks
 	glutDisplayFunc(Render);
 	glutReshapeFunc(Resize);
@@ -76,7 +95,7 @@ int main(int argc, char **argv)
 	// TODO - Make glut loop return on exit.
 	glutMainLoop();
 
-	mScene.Destroy();
+	shutdown();
 
 	return 1;
 }

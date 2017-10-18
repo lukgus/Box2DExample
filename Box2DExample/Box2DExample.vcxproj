@@ -134,11 +134,25 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="CheckGLError.cpp" />
+    <ClCompile Include="DebugLogger.cpp" />
+    <ClCompile Include="ErrorLog.cpp" />
+    <ClCompile Include="LManagers.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Mesh.cpp" />
     <ClCompile Include="MeshManager.cpp" />
+    <ClCompile Include="PhysicsExampleScene.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="CheckGLError.h" />
+    <ClInclude Include="DebugLogger.h" />
+    <ClInclude Include="ErrorLog.h" />
+    <ClInclude Include="LManagers.h" />
+    <ClInclude Include="LOpenGL.h" />
+    <ClInclude Include="Mesh.h" />
     <ClInclude Include="MeshManager.h" />
+    <ClInclude Include="PhysicsExampleScene.h" />
+    <ClInclude Include="vertex_defs.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

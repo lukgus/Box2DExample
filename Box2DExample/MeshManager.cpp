@@ -11,7 +11,7 @@
  * Default Constructor
  */
 MeshManager::MeshManager()
-	: mBaseFilePath("Asssets/Models/")
+	: mBaseFilePath("Assets/Models/")
 {
 	// do nothing.
 }
@@ -72,6 +72,11 @@ int MeshManager::LoadMeshFromFile(const std::string& filename)
 	unsigned int flags = aiProcess_Triangulate;
 
 	const aiScene* pScene = mImporter.ReadFile(mBaseFilePath + filename.c_str(), flags);
+
+	if (pScene == 0)
+	{
+		return 1;
+	}
 
 	unsigned int numMeshes = pScene->mNumMeshes;
 
@@ -142,7 +147,7 @@ void MeshManager::LoadMesh(aiMesh* mesh)
 
 	Mesh* newMesh = new Mesh();
 
-	glGenVertexArrays(1, &newMesh->VAO);
+	glGenVertexArrays(1, &(newMesh->VAO));
 	glBindVertexArray(newMesh->VAO);
 	CheckGLError();
 
