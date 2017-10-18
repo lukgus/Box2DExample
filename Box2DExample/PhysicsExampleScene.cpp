@@ -69,7 +69,9 @@ void PhysicsExampleScene::Destroy()
  */
 void PhysicsExampleScene::Update(float dt)
 {
-	// TODO: Detect user input, and handle it
+	HandleUserInput();
+
+	HandleCollisions();
 }
 
 /**
@@ -138,11 +140,33 @@ int PhysicsExampleScene::LoadScene()
 	platform->scale.z *= 10.0f;
 	platform->MeshId = 1;
 	mGameObjects.push_back(platform);
+	// TODO: Add rigid body to platform
 
 	GameObject* sphere = new GameObject();
 	sphere->position.y = 10.0f;
 	sphere->MeshId = 0;
 	mGameObjects.push_back(sphere);
+	// TODO: Add dynamic body to sphere
 
 	return 0;
+}
+
+/**
+ * HandleUserInput
+ * Handles user input to control the sphere
+ * by adding forces to it in a direction
+ */
+void PhysicsExampleScene::HandleUserInput()
+{
+	// TODO: Fill out
+}
+
+/**
+ * HandleCollisions
+ * Checks the collision listener for collisions,
+ * and handles the collisions.
+ */
+void PhysicsExampleScene::HandleCollisions()
+{
+	// TODO: Fill out
 }

@@ -22,6 +22,9 @@ private:
 	int LoadShaders();
 	int LoadScene();
 
+	void HandleUserInput();
+	void HandleCollisions();
+
 	std::vector<GameObject*> mGameObjects;
 };
 
