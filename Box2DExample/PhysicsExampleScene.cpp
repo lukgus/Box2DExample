@@ -98,8 +98,12 @@ int PhysicsExampleScene::LoadMeshes()
  */
 int PhysicsExampleScene::LoadShaders()
 {
-	DebugLogger::LogSubMessage("Loading Shader...");
-	// TODO: Load basic shader..
+	DebugLogger::LogSubMessage("Loading SimpleShader...");
+	if (gShaderManager.CreateShaderProgramFromSourceFiles("SimpleShader", "SimpleShader.vertex.glsl", "SimpleShader.fragment.glsl") == false)
+	{
+		DebugLogger::LogError("Failed to load SimpleShader!");
+		return 1;
+	}
 
 	return 0;
 }

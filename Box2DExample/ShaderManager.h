@@ -62,7 +62,7 @@ public:
 	GLuint GetCurrentShaderID(void);
 	GLuint GetShaderIDFromName(const std::string &name);
 
-	GLuint CreateShaderProgramFromSourceFiles(const std::string name, std::string vertexFilename, const std::string fragmentFilename);
+	bool CreateShaderProgramFromSourceFiles(const std::string name, std::string vertexFilename, const std::string fragmentFilename);
 private:
 	std::string LoadShaderFromFile(std::string filename);
 	bool CompileShader(Shader* shader);

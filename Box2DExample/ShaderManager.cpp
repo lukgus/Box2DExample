@@ -164,9 +164,9 @@ void ShaderManager::UnloadProgram(std::string name)
 * Creates a shader program from the provided shader files
 * @param vertexFilename - the filename of the vertex shader to load
 * @param fragmentFilename - the filename of the fragment shader to load
-* @return - the created program id
+* @return bool - TRUE if successfully loaded, FALSE otherwise
 */
-GLuint ShaderManager::CreateShaderProgramFromSourceFiles(const std::string name, std::string vertexFilename, const std::string fragmentFilename)
+bool ShaderManager::CreateShaderProgramFromSourceFiles(const std::string name, std::string vertexFilename, const std::string fragmentFilename)
 {
 	ShaderProgram program;
 	Shader vertShader;
