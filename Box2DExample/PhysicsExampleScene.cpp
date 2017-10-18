@@ -163,22 +163,22 @@ int PhysicsExampleScene::LoadScene()
 	platformShape.SetAsBox(platform->scale.x, platform->scale.y);
 	platform->PhysicsBody->CreateFixture(&platformShape, 0.0f);
 
-	GameObject* sphere = new GameObject();
-	sphere->position.y = 10.0f;
-	sphere->MeshId = 0;
-	mGameObjects.push_back(sphere);
+	mSphere = new GameObject();
+	mSphere->position.y = 10.0f;
+	mSphere->MeshId = 0;
+	mGameObjects.push_back(mSphere);
 
 	// TODO: Add dynamic body to sphere
 	b2BodyDef sphereBodyDef;
-	sphereBodyDef.position.Set(sphere->position.x, sphere->position.y);
+	sphereBodyDef.position.Set(mSphere->position.x, mSphere->position.y);
 	sphereBodyDef.type = b2_dynamicBody;						// This allows the object to move
-	sphere->PhysicsBody = gPhysicsManager.CreateBody(&sphereBodyDef);
+	mSphere->PhysicsBody = gPhysicsManager.CreateBody(&sphereBodyDef);
 
 	b2CircleShape circleShape;
 	circleShape.m_p.Set(0.0f, 0.0f);							// See how the midpoint at 0, 0 works.
-	circleShape.m_radius = sphere->scale.x;
+	circleShape.m_radius = mSphere->scale.x;
 
-	sphere->PhysicsBody->CreateFixture(&circleShape, 1.0f);
+	mSphere->PhysicsBody->CreateFixture(&circleShape, 1.0f);
 
 	return 0;
 }
@@ -190,7 +190,18 @@ int PhysicsExampleScene::LoadScene()
  */
 void PhysicsExampleScene::HandleUserInput()
 {
-	// TODO: Fill out
+	b2Vec2 inputForce(0.0f, 0.0f);
+
+	if (gInputManager.IsKeyHeldDown('a') || gInputManager.IsKeyHeldDown('A'))
+	{
+		inputForce.x = -10.0f;
+	}
+	if (gInputManager.IsKeyHeldDown('d') || gInputManager.IsKeyHeldDown('D'))
+	{
+		inputForce.x = 10.0f;
+	}
+
+	mSphere->PhysicsBody->ApplyForceToCenter(inputForce, true);
 }
 
 /**
