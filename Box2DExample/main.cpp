@@ -41,6 +41,7 @@ void Render(void)
 	mScene.Update(dt);
 
 	gPhysicsManager.Update(dt);
+	gInputManager.Update();
 
 	gRenderManager.SetViewMatrix(
 		glm::lookAt(
@@ -59,6 +60,32 @@ void Render(void)
 }
 
 /**
+ * PressKey
+ * GLUT callback for keyboard press
+ * @param key - the key pressed
+ * @param mouseX - the current x mouse coord
+ * @param mouseY - the current y mouse coord
+ */
+void PressKey(unsigned char key, int mouseX, int mouseY)
+{
+	gInputManager.PressKey(key);
+	gInputManager.SetMousePosition(mouseX, mouseY);
+}
+
+/**
+* ReleaseKey
+* GLUT callback for keyboard release
+* @param key - the key pressed
+* @param mouseX - the current x mouse coord
+* @param mouseY - the current y mouse coord
+*/
+void ReleaseKey(unsigned char key, int mouseX, int mouseY)
+{
+	gInputManager.ReleaseKey(key);
+	gInputManager.SetMousePosition(mouseX, mouseY);
+}
+
+/**
  * init
  * Startup managers in proper order
  */
@@ -68,6 +95,7 @@ bool init()
 	gPhysicsManager.StartUp();
 	gShaderManager.StartUp();
 	gRenderManager.StartUp();
+	gInputManager.StartUp();
 
 	return mScene.Initialize();
 }
@@ -80,6 +108,7 @@ void shutdown()
 {
 	mScene.Destroy();
 
+	gInputManager.Shutdown();
 	gRenderManager.ShutDown();
 	gShaderManager.ShutDown();
 	gPhysicsManager.Shutdown();
@@ -108,7 +137,9 @@ int main(int argc, char **argv)
 	glutReshapeFunc(Resize);
 	glutIdleFunc(Render);
 
-	// TODO - Register keyboard callbacks
+	glutIgnoreKeyRepeat(1);										// Ignore keyboard repeat nonsense
+	glutKeyboardFunc(PressKey);
+	glutKeyboardUpFunc(ReleaseKey);
 
 	if (!init())
 	{
