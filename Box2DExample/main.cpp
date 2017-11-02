@@ -10,8 +10,10 @@
 #include "LOpenGL.h"
 
 #include "PhysicsContactListener.h"
+#include "DebugPhysicsRenderer.h"
 
 PhysicsExampleScene mScene;
+DebugPhysicsRenderer debugPhysicsRenderer;
 
 const float DEFAULT_DT = 0.016f;
 const float Z_NEAR = 1.0f;
@@ -57,7 +59,8 @@ void Render(void)
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 	mScene.Render();
-
+	gPhysicsManager.Render();
+	
 	glutSwapBuffers();
 }
 
@@ -100,6 +103,7 @@ bool init()
 	gInputManager.StartUp();
 
 	gPhysicsManager.SetContactListener(new PhysicsContactListener());
+	gPhysicsManager.SetDebugRenderer(&debugPhysicsRenderer);
 
 	return mScene.Initialize();
 }

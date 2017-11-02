@@ -136,6 +136,7 @@
   <ItemGroup>
     <ClCompile Include="CheckGLError.cpp" />
     <ClCompile Include="DebugLogger.cpp" />
+    <ClCompile Include="DebugPhysicsRenderer.cpp" />
     <ClCompile Include="ErrorLog.cpp" />
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="InputManager.cpp" />
@@ -152,6 +153,7 @@
   <ItemGroup>
     <ClInclude Include="CheckGLError.h" />
     <ClInclude Include="DebugLogger.h" />
+    <ClInclude Include="DebugPhysicsRenderer.h" />
     <ClInclude Include="ErrorLog.h" />
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="InputManager.h" />

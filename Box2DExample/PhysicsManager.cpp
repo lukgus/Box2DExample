@@ -53,6 +53,15 @@ void PhysicsManager::Update(float dt)
 }
 
 /**
+ * Render
+ * Renders the debug shapes
+ */
+void PhysicsManager::Render()
+{
+	this->mPhysicsWorld->DrawDebugData();
+}
+
+/**
  * SetGravity
  * Sets the gravity for the physics world
  * @param gravity - the gravity
@@ -93,4 +102,15 @@ b2Body* PhysicsManager::CreateBody(const b2BodyDef* def)
 void PhysicsManager::DestroyBody(b2Body* body)
 {
 	mPhysicsWorld->DestroyBody(body);
+}
+
+/**
+ * SetDebugRenderer
+ * Sets the debug renderer
+ * @param debugRenderer - the debug renderer to use
+ */
+void PhysicsManager::SetDebugRenderer(b2Draw* debugRenderer)
+{
+	this->mPhysicsWorld->SetDebugDraw(debugRenderer);
+	debugRenderer->SetFlags(b2Draw::e_shapeBit);
 }
